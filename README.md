@@ -3,7 +3,7 @@
 
 ### Brist
 
-Steven Wu
+Steven Wu  
 Jun Jie Li
 
 ### Project Description:
