@@ -8,11 +8,27 @@ Jun Jie Li
 
 ### Project Description:
 
-Explain what is this project. (CHANGE THIS!!!!!)
+Basic game. 2 Players connect to eachother and play a game.
+
+### Install/Compile/Run Instructions
+
+Prerequisites:
+makefile
+
+Clone the Repo:  
+SSH:  
+```
+git clone git@github.com:Stuycs-K/p03-final-09f-wus-lij.git
+```
+Go into the repo:  
+```
+cd p03-final-09f-wus-lij
+```
+
+
 
 ### Instructions:
 
-How does the user install/compile/run the program. (CHANGE THIS!!!!!)
 How does the user interact with this program? (CHANGE THIS!!!!!)
 
 ### Resources/References:
