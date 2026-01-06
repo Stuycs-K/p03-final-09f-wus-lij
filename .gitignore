@@ -1,3 +1,7 @@
+# Custom Binaries
+client
+server
+
 # Prerequisites
 *.d
 
