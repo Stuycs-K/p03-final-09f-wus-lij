@@ -19,9 +19,9 @@ Basic matchmaking system for 2 players
 P2P, where a challenging player is the server and waits for a client (player) to connect. Then they connect to eachother and play the game.
 ### Extra Features:
 Instead of P2P, Clients (players) connect to a constant server and wait to be matched for a game. Server will keep track of board state via a files for each game
-    - See Game history, player winrates
-    - Players pick and choose who to play against
-    - Chat feature lol
+  - See Game history, player winrates
+  - Players pick and choose who to play against
+  - Chat feature lol
 ### Topics:
 Allocating Memory, Sockets, Processes, Signals
 ### Breakdown
