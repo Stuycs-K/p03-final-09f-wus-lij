@@ -36,7 +36,7 @@ run the file:
 ```
 ./server
 ```
-Wait for Player 2 to continue
+Wait for Player 1 to run the program
 
 Player 2: compile the file:
 ```
@@ -49,7 +49,6 @@ run the file:
 
 Both players should be matched up!
 ### Game Instructions:
-Each player makes their move, then waits for the next player to make their move. play continues until 1 player wins.
+The player that initiated goes first. Each player types in an input, which ends their turns and gives it to the next person. Play continues until 1 player wins.
 
 ### Resources/References:
-
