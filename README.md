@@ -29,7 +29,19 @@ cd p03-final-09f-wus-lij
 
 ### Instructions:
 
-How does the user interact with this program? (CHANGE THIS!!!!!)
+Player 1:
+```
+make server
+```
+Wait for Player 2 to continue
+
+Player 2:
+```
+make client
+```
+
+fihgtt!
+turn based wait for response and repeat till one loses
 
 ### Resources/References:
 
