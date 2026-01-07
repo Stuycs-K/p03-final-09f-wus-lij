@@ -4,8 +4,8 @@ This document must be updated daily every time you finish a work session.
 
 ## Steven Wu
 
-### 2024-01-06 - Brief description
-CHANGE
+### 2024-01-06 - Basic file setup
+Port over code from networking lab. worked with Brian to update instructions on readme.
 
 ### 2024-01-07 - Brief description
 CHANGE

@@ -10,13 +10,13 @@ Jun Jie Li
 
 Basic game. 2 Players connect to eachother and play a game.
 
-### Install/Compile/Run Instructions
+### Install/Compile/Run Instructions:
 
 Prerequisites:
 makefile
 
 Clone the Repo:  
-SSH:  
+(SSH):  
 ```
 git clone git@github.com:Stuycs-K/p03-final-09f-wus-lij.git
 ```
@@ -27,22 +27,29 @@ cd p03-final-09f-wus-lij
 
 
 
-### Instructions:
 
-Player 1:
+Player 1: compile the file:
 ```
 make server
 ```
+run the file:
+```
+./server
+```
 Wait for Player 2 to continue
 
-Player 2:
+Player 2: compile the file:
 ```
 make client
 ```
+run the file:
+```
+./client
+```
 
-fihgtt!
-turn based wait for response and repeat till one loses
+Both players should be matched up!
+### Game Instructions:
+Each player makes their move, then waits for the next player to make their move. play continues until 1 player wins.
 
 ### Resources/References:
 
-list here(CHANGE THIS!!!!!)
