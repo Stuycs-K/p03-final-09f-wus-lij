@@ -14,7 +14,12 @@ int main(int argc, char *argv[] ) {
   if(argc>1){
     IP=argv[1];
   }
+  printf("%s", "Enter your name: ");
+  fflush(stdout);
+  char buff[BUFFER_SIZE];
+  fgets(buff, BUFFER_SIZE - 1, stdin);
+
   int server_socket = client_tcp_handshake(IP);
-  printf("client connected.\n");
+  printf("Connected!\n");
   clientLogic(server_socket);
 }
