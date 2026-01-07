@@ -9,16 +9,13 @@ void clientLogic(int server_socket){
 }
 
 int main(int argc, char *argv[] ) {
-  char* IP = "127.0.0.1";
-  // 149.89.40.111
+  // char* IP = "127.0.0.1";
+  char* IP = "149.89.40.107";
+  //107 RIGHT 108 LEFT
   if(argc>1){
     IP=argv[1];
   }
-  printf("%s", "Enter your name: ");
-  fflush(stdout);
-  char buff[BUFFER_SIZE];
-  fgets(buff, BUFFER_SIZE - 1, stdin);
-
+  requestName();
   int server_socket = client_tcp_handshake(IP);
   printf("Connected!\n");
   clientLogic(server_socket);
