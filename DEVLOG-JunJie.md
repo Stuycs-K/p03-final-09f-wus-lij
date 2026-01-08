@@ -8,7 +8,7 @@ This document must be updated daily every time you finish a work session.
 Created the barebone files to be used for this project. Updated README.md for basic instructions for game
 
 ### 2024-01-07 - Brief description
-CHANGE
+Added a parameter to request_name so buffer can be reused, added send and recv names.
 
 ### 2024-01-08 - Brief description
 CHANGE
