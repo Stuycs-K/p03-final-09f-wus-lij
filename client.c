@@ -9,8 +9,8 @@ void clientLogic(int server_socket){
 }
 
 int main(int argc, char *argv[] ) {
-   char* IP = "127.0.0.1";
-  //char* IP = "149.89.40.107";
+  char* IP = "127.0.0.1"; // localhost
+  // char* IP = "149.89.40.107";
   //107 RIGHT 108 LEFT
   if(argc>1){
     IP=argv[1];

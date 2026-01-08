@@ -73,16 +73,23 @@ int client_tcp_handshake(char * server_address) {
 
   return serverd;
 }
-
-void requestName(char * buff){
-  printf("%s", "Enter your name: ");
+void requestInput(char * buff, char * prompt){
+  printf("%s", prompt);
   fflush(stdout);
   fgets(buff, BUFFER_SIZE - 1, stdin);
   printf("%s\n", "Waiting for other player...");
+}
+void requestName(char * buff){
+  requestInput(buff, "Enter your name: ");
 }
 void err(int i, char*message){
   if(i < 0){
 	  printf("Error: %s - %s\n",message, strerror(errno));
   	exit(1);
   }
+}
+
+void game_logic(){ // guess a number
+  char buff[BUFFER_SIZE];
+  requestInput(buff, "Enter a number: ");
 }
