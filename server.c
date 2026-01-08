@@ -16,6 +16,8 @@ int main(int argc, char *argv[] ) {
   if (bytes > 0){
     client_name[bytes] = '\0';
   }
+
   printf("Your opponent: %s", client_name);
   send(client_socket, server_name, strlen(server_name), 0);
+
 }
