@@ -26,5 +26,23 @@ int main(int argc, char *argv[] ) {
     server_name[b] = '\0';
   }
   printf("Your opponent: %s", server_name);
+
+  char input[BUFFER_SIZE];
+  char eInput[BUFFER_SIZE];
+  char turn[BUFFER_SIZE];
+  turn[0] = 0;
+  while(1){
+    if(turn[0] == 0){
+      requestInput(input, "Enter a message: ");
+      send(server_socket, input, strlen(input), 0);
+      turn[0] = 1;
+      send(server_socket, turn, strlen(turn), 0);
+      int eMsg = recv(server_socket, input, BUFFER_SIZE, 0);
+      printf("%s: %s", server_name, input);
+    }
+    printf("fetching turn\n");
+    turn[0] = recv(server_socket, turn, BUFFER_SIZE, 0);
+  }
+
   clientLogic(server_socket);
 }
