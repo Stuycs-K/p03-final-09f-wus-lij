@@ -91,9 +91,5 @@ void err(int i, char*message){
 
 void game_logic(){ // guess a number
   char buff[BUFFER_SIZE];
-<<<<<<< HEAD
-  requestInput(buff, "Enter a number: ");
-=======
   prompt(buff, "Enter a number: ");
->>>>>>> c853f83b590f8af7df5fc3eda5da71d93bda9dca
 }
