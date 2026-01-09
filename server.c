@@ -16,9 +16,11 @@ int main(int argc, char *argv[] ) {
   if (bytes > 0){
     client_name[bytes] = '\0';
   }
-  printf("Your opponent:%s", client_name);
+
+  printf("Your opponent: %s", client_name);
   send(client_socket, server_name, strlen(server_name), 0);
 
+<<<<<<< HEAD
   char input[BUFFER_SIZE];
   char eInput[BUFFER_SIZE];
   char turn[BUFFER_SIZE];
@@ -35,4 +37,6 @@ int main(int argc, char *argv[] ) {
     printf("%s\n", turn);
   }
 
+=======
+>>>>>>> c853f83b590f8af7df5fc3eda5da71d93bda9dca
 }
