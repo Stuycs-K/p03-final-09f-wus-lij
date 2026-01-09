@@ -25,7 +25,7 @@ int main(int argc, char *argv[] ) {
   char turn[BUFFER_SIZE];
   while(1){
     if(turn[0] == 1){
-      requestInput(input, "Enter a message: ");
+      prompt(input, "Enter a message: ");
       send(client_socket, input, strlen(input), 0);
       turn[0] = 0;
       send(client_socket, turn, strlen(turn), 0);

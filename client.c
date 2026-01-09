@@ -33,7 +33,7 @@ int main(int argc, char *argv[] ) {
   turn[0] = 0;
   while(1){
     if(turn[0] == 0){
-      requestInput(input, "Enter a message: ");
+      prompt(input, "Enter a message: ");
       send(server_socket, input, strlen(input), 0);
       turn[0] = 1;
       send(server_socket, turn, strlen(turn), 0);
