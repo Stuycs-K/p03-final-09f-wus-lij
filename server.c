@@ -24,7 +24,7 @@ int main(int argc, char *argv[] ) {
   char turn;
   turn = 0;
   while(1){
-    if(turn){
+    if(turn == 1){
       requestInput(input, "Enter a message: ");
       send(client_socket, input, strlen(input), 0);
       turn = 0;
@@ -39,6 +39,7 @@ int main(int argc, char *argv[] ) {
     if(bytes <= 0){
       break;
     }
+    turn = bytes;
   }
 
 }
