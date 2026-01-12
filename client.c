@@ -29,19 +29,27 @@ int main(int argc, char *argv[] ) {
 
   char input[BUFFER_SIZE];
   char eInput[BUFFER_SIZE];
-  char turn[BUFFER_SIZE];
-  turn[0] = 0;
+  char turn;
+  turn = 1;
   while(1){
-    if(turn[0] == 0){
+    if(turn == 1){
       requestInput(input, "Enter a message: ");
       send(server_socket, input, strlen(input), 0);
-      turn[0] = 1;
-      send(server_socket, turn, strlen(turn), 0);
+      send(server_socket, &turn, 1, 0);
       int eMsg = recv(server_socket, input, BUFFER_SIZE, 0);
+      if(eMsg > 0){
+        input[eMsg] = '\0';
+      }
       printf("%s: %s", server_name, input);
+      turn = 1;
+      send(server_socket, turn, 1, 0);
+      break;
     }
-    printf("fetching turn\n");
-    turn[0] = recv(server_socket, turn, BUFFER_SIZE, 0);
+    turn = 0;
+    int bytes = recv(server_socket, &turn, 1, 0);
+    if(bytes <= 0){
+      break;
+    }
   }
 
   clientLogic(server_socket);

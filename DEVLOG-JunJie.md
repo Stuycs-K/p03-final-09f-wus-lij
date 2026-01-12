@@ -11,7 +11,7 @@ Created the barebone files to be used for this project. Updated README.md for ba
 Added a parameter to request_name so buffer can be reused, added send and recv names.
 
 ### 2024-01-08 - Brief description
-CHANGE
+Started testing sending messages back and forth from server and client. Partially works (sends only once but displays other side message after)
 
 ### 2024-01-11 - Brief description
 CHANGE

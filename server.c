@@ -22,18 +22,25 @@ int main(int argc, char *argv[] ) {
 
   char input[BUFFER_SIZE];
   char eInput[BUFFER_SIZE];
-  char turn[BUFFER_SIZE];
+  char turn;
+  turn = 0;
   while(1){
-    if(turn[0] == 1){
+    if(turn == 1){
       requestInput(input, "Enter a message: ");
       send(client_socket, input, strlen(input), 0);
-      turn[0] = 0;
-      send(client_socket, turn, strlen(turn), 0);
+      turn = 0;
+      send(client_socket, &turn, 1, 0);
       int eMsg = recv(client_socket, input, BUFFER_SIZE, 0);
+      if(eMsg > 0){
+        input[eMsg] = '\0';
+      }
       printf("%s: %s", client_name, input);
     }
-    turn[0] = recv(client_socket, turn, BUFFER_SIZE, 0);
-    printf("%s\n", turn);
+    int bytes = recv(client_socket, &turn, 1, 0);
+    if(bytes <= 0){
+      break;
+    }
+    turn = bytes;
   }
 
 }
