@@ -94,3 +94,13 @@ void game_logic(){ // guess a number
   char buff[BUFFER_SIZE];
   requestInput(buff, "Enter a number: ");
 }
+char* n_recieve(int outside_socket, char* buff){
+  int bytes = recv(outside_socket, buff, BUFFER_SIZE, 0);
+  if (bytes <= -1){
+    perror("RECV errno:");
+  } else if (bytes == 0){
+    printf("Connection closed.\n");
+  }
+  buff[bytes] = '\0';
+  return buff;
+}

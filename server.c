@@ -23,20 +23,14 @@ int main(int argc, char *argv[] ) {
   client_name[t] = '\0';
 
   char input[BUFFER_SIZE];
-  char eInput[BUFFER_SIZE];
+  char incoming_msg[BUFFER_SIZE];
   char turn;
   turn = 0;
 while(1){
-    int bytes = recv(client_socket, input, BUFFER_SIZE, 0);
-    if(bytes <= 0){
-      printf("Connection closed.\n");
-      break;
-    }
-    input[bytes] = '\0';
-    printf("%s: %s", client_name, input);
-    
+    n_recieve(client_socket, incoming_msg);
+    printf("%s: %s", client_name, incoming_msg);
+
     requestInput(input, "Enter a message: ");
     send(client_socket, input, strlen(input), 0);
   }
 }
-

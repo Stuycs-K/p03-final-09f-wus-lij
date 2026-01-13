@@ -9,9 +9,9 @@ void clientLogic(int server_socket){
 }
 
 int main(int argc, char *argv[] ) {
-  char* IP = "127.0.0.1"; // localhost
-  // char* IP = "149.89.40.107";
-  //107 RIGHT 108 LEFT
+  // char* IP = "127.0.0.1"; // localhost
+  char* IP = "149.89.40.100";
+  //107 RIGHT 108 LEFT 100 MARGE
   if(argc>1){
     IP=argv[1];
   }
@@ -30,21 +30,16 @@ int main(int argc, char *argv[] ) {
   server_name[t] = '\0';
 
   char input[BUFFER_SIZE];
-  char eInput[BUFFER_SIZE];
+  char incoming_msg[BUFFER_SIZE];
   char turn;
   turn = 1;
 while(1){
   while(1){
     requestInput(input, "Enter a message: ");
     send(server_socket, input, strlen(input), 0);
-    
-    int bytes = recv(server_socket, input, BUFFER_SIZE, 0);
-    if(bytes <= 0){
-      printf("Connection closed.\n");
-      break;
-    }
-    input[bytes] = '\0';
-    printf("%s: %s", server_name, input);
+
+    n_recieve(server_socket, incoming_msg);
+    printf("%s: %s", server_name, incoming_msg);
   }
 }
 
