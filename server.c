@@ -19,21 +19,28 @@ int main(int argc, char *argv[] ) {
 
   printf("Your opponent: %s", client_name);
   send(client_socket, server_name, strlen(server_name), 0);
+  size_t t = strcspn(client_name, "\n");
+  client_name[t] = '\0';
 
   char input[BUFFER_SIZE];
   char eInput[BUFFER_SIZE];
-  char turn[BUFFER_SIZE];
-  while(1){
-    if(turn[0] == 1){
-      prompt(input, "Enter a message: ");
-      send(client_socket, input, strlen(input), 0);
-      turn[0] = 0;
-      send(client_socket, turn, strlen(turn), 0);
-      int eMsg = recv(client_socket, input, BUFFER_SIZE, 0);
-      printf("%s: %s", client_name, input);
-    }
-    turn[0] = recv(client_socket, turn, BUFFER_SIZE, 0);
-    printf("%s\n", turn);
+  char turn;
+  turn = 0;
+while(1){
+  if(turn == 1){
+    requestInput(input, "Enter a message: ");
+    send(client_socket, input, strlen(input), 0);
+    turn= 1 - turn;
   }
+  else{
+    int bytes = recv(client_socket, input, BUFFER_SIZE, 0);
+    if(bytes <= 0){
+      break;
+    }
+    input[bytes] = '\0';
+    printf("%s: %s", client_name, input);
+    turn = 1 - turn;
+  }
+}
 
 }

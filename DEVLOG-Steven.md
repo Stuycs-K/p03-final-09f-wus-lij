@@ -13,7 +13,7 @@ Basic socket debugging, sending information, start game code
 ### 2024-01-08 - Brief description
 CHANGE
 
-### 2024-01-11 - Brief description
+### 2024-01-9 - Brief description
 CHANGE
 
 ### 2024-01-12 - Brief description
