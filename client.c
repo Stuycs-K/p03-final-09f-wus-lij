@@ -31,26 +31,22 @@ int main(int argc, char *argv[] ) {
   char eInput[BUFFER_SIZE];
   char turn;
   turn = 1;
-  while(1){
-    if(turn == 1){
-      requestInput(input, "Enter a message: ");
-      send(server_socket, input, strlen(input), 0);
-      send(server_socket, &turn, 1, 0);
-      int eMsg = recv(server_socket, input, BUFFER_SIZE, 0);
-      if(eMsg > 0){
-        input[eMsg] = '\0';
-      }
-      printf("%s: %s", server_name, input);
-      turn = 1;
-      send(server_socket, turn, 1, 0);
-      break;
-    }
-    turn = 0;
-    int bytes = recv(server_socket, &turn, 1, 0);
+while(1){
+  if(turn == 1){
+    requestInput(input, "Enter a message: ");
+    send(server_socket, input, strlen(input), 0);
+    turn =1 - turn;
+  }
+  else{
+    int bytes = recv(server_socket, input, BUFFER_SIZE, 0);
     if(bytes <= 0){
       break;
     }
+    input[bytes] = '\0';
+    printf("%s: %s", server_name, input);
+    turn = 1 - turn;
   }
+}
 
   clientLogic(server_socket);
 }
