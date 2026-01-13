@@ -34,19 +34,17 @@ int main(int argc, char *argv[] ) {
   char turn;
   turn = 1;
 while(1){
-  if(turn == 1){
+  while(1){
     requestInput(input, "Enter a message: ");
     send(server_socket, input, strlen(input), 0);
-    turn =1 - turn;
-  }
-  else{
+    
     int bytes = recv(server_socket, input, BUFFER_SIZE, 0);
     if(bytes <= 0){
+      printf("Connection closed.\n");
       break;
     }
     input[bytes] = '\0';
     printf("%s: %s", server_name, input);
-    turn = 1 - turn;
   }
 }
 

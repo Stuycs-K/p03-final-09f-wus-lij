@@ -27,20 +27,16 @@ int main(int argc, char *argv[] ) {
   char turn;
   turn = 0;
 while(1){
-  if(turn == 1){
-    requestInput(input, "Enter a message: ");
-    send(client_socket, input, strlen(input), 0);
-    turn= 1 - turn;
-  }
-  else{
     int bytes = recv(client_socket, input, BUFFER_SIZE, 0);
     if(bytes <= 0){
+      printf("Connection closed.\n");
       break;
     }
     input[bytes] = '\0';
     printf("%s: %s", client_name, input);
-    turn = 1 - turn;
+    
+    requestInput(input, "Enter a message: ");
+    send(client_socket, input, strlen(input), 0);
   }
 }
 
-}
