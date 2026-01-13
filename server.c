@@ -12,11 +12,7 @@ int main(int argc, char *argv[] ) {
 
 
   int client_socket = server_tcp_handshake(listen_socket);
-  int bytes = recv(client_socket, client_name, BUFFER_SIZE, 0);
-  if (bytes > 0){
-    client_name[bytes] = '\0';
-  }
-
+  n_recieve(client_socket, client_name);
   printf("Your opponent: %s", client_name);
   send(client_socket, server_name, strlen(server_name), 0);
   size_t t = strcspn(client_name, "\n");
