@@ -13,11 +13,11 @@ Added a parameter to request_name so buffer can be reused, added send and recv n
 ### 2024-01-08 - Brief description
 Started testing sending messages back and forth from server and client. Partially works (sends only once but displays other side message after)
 
-### 2024-01-11 - Brief description
-CHANGE
+### 2024-01-9 - Brief description
+Merge. Learned more about git branches, discuss project to be guessing game.
 
 ### 2024-01-12 - Brief description
-CHANGE
+Fixed turns messaging. Fixed names not appearing.
 
 ### 2024-01-13 - Brief description
 CHANGE
