@@ -26,6 +26,6 @@ while(1){
     printf("%s: %s", client_name, incoming_msg);
 
     requestInput(input, "Enter a message: ");
-    send(client_socket, input, strlen(input), 0);
+    n_send(client_socket, input);
   }
 }

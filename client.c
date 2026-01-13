@@ -32,7 +32,7 @@ int main(int argc, char *argv[] ) {
 while(1){
   while(1){
     requestInput(input, "Enter a message: ");
-    send(server_socket, input, strlen(input), 0);
+    n_send(server_socket, input);
 
     n_recieve(server_socket, incoming_msg);
     printf("%s: %s", server_name, incoming_msg);
