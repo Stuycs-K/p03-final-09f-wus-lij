@@ -20,11 +20,10 @@ int main(int argc, char *argv[] ) {
   requestName(client_name);
   int server_socket = client_tcp_handshake(IP);
   printf("Connected!\n");
-  send(server_socket, client_name, strlen(client_name), 0);
+  n_send(server_socket, client_name);
   n_recieve(server_socket, server_name);
   printf("Your opponent: %s", server_name);
-  size_t t = strcspn(server_name, "\n");
-  server_name[t] = '\0';
+  cut_string(server_name);
 
   char input[BUFFER_SIZE];
   char incoming_msg[BUFFER_SIZE];

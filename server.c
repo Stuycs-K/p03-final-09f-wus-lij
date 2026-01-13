@@ -14,9 +14,8 @@ int main(int argc, char *argv[] ) {
   int client_socket = server_tcp_handshake(listen_socket);
   n_recieve(client_socket, client_name);
   printf("Your opponent: %s", client_name);
-  send(client_socket, server_name, strlen(server_name), 0);
-  size_t t = strcspn(client_name, "\n");
-  client_name[t] = '\0';
+  n_send(client_socket, server_name);
+  cut_string(client_name);
 
   char input[BUFFER_SIZE];
   char incoming_msg[BUFFER_SIZE];

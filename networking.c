@@ -94,6 +94,13 @@ void game_logic(){ // guess a number
   char buff[BUFFER_SIZE];
   requestInput(buff, "Enter a number: ");
 }
+char* cut_string(char* str){
+  size_t t = strcspn(str, "\n");
+  str[t] = '\0';
+}
+void n_send(int outside_socket, char* buff){
+  send(outside_socket, buff, strlen(buff), 0);
+}
 char* n_recieve(int outside_socket, char* buff){
   int bytes = recv(outside_socket, buff, BUFFER_SIZE, 0);
   if (bytes <= -1){
