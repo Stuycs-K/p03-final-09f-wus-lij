@@ -26,6 +26,8 @@ int main(int argc, char *argv[] ) {
     server_name[b] = '\0';
   }
   printf("Your opponent: %s", server_name);
+  size_t t = strcspn(server_name, "\n");
+  server_name[t] = '\0';
 
   char input[BUFFER_SIZE];
   char eInput[BUFFER_SIZE];

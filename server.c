@@ -19,6 +19,8 @@ int main(int argc, char *argv[] ) {
 
   printf("Your opponent: %s", client_name);
   send(client_socket, server_name, strlen(server_name), 0);
+  size_t t = strcspn(client_name, "\n");
+  client_name[t] = '\0';
 
   char input[BUFFER_SIZE];
   char eInput[BUFFER_SIZE];
