@@ -3,6 +3,6 @@
 
 int get_number(){
   char* buff = (char*) malloc(BUFFER_SIZE * sizeof(char));
-  requestInput("Enter your number: "):
+  request_input("Enter your number: "):
   free(buff);
 }

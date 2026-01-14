@@ -73,7 +73,7 @@ int client_tcp_handshake(char * server_address) {
 
   return serverd;
 }
-char* requestInput(char * buff, char * prompt){
+char* request_input(char * buff, char * prompt){
   printf("%s", prompt);
   fflush(stdout);
   fgets(buff, BUFFER_SIZE - 1, stdin);
