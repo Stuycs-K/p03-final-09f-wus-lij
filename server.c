@@ -29,6 +29,8 @@ int main(int argc, char *argv[] ) {
 
     fd_set read_fds;
     char buff[1025]="";
+    printf("wait for your opponent to send something!\n");
+    fflush(stdout);
 while(1){
 
     FD_ZERO(&read_fds);
@@ -41,7 +43,6 @@ while(1){
         fgets(buff, sizeof(buff), stdin);
         buff[strlen(buff)-1]=0;
         if(turn == 1){
-          printf("You: ");
           send(client_socket, buff, strlen(buff), 0);
           turn= 1 - turn;
         }
@@ -58,6 +59,8 @@ while(1){
         }
         buff[bytes] = '\0';
         printf("%s: %s\n", client_name, buff);
+        printf("You: ");
+        fflush(stdout);
         turn = 1 - turn;
     }
 }

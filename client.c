@@ -33,10 +33,13 @@ int main(int argc, char *argv[] ) {
   char eInput[BUFFER_SIZE];
   char turn;
   turn = 1;
-  
+
   fd_set read_fds;
   char buff[1025]="";
-  
+
+  printf("kiminodebanyo! Type something...\nYou: ");
+  fflush(stdout);
+
 while(1){
 
     FD_ZERO(&read_fds);
@@ -49,14 +52,13 @@ while(1){
         fgets(buff, sizeof(buff), stdin);
         buff[strlen(buff)-1]=0;
         if(turn == 1){
-          printf("You: ");
           send(server_socket, buff, strlen(buff), 0);
           turn =1 - turn;
         }
         else{
           printf("It's not your turn! It is %s's turn right now.\n", server_name);
         }
-        printf("You: ");
+
     }
     // if socket
     if (FD_ISSET(server_socket, &read_fds)) {
@@ -67,6 +69,8 @@ while(1){
         buff[bytes] = '\0';
         printf("%s: %s\n", server_name, buff);
         turn = 1 - turn;
+        printf("You: ");
+        fflush(stdout);
     }
 }
 
