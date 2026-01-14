@@ -17,7 +17,8 @@ int main(int argc, char *argv[] ) {
   }
   char client_name[BUFFER_SIZE];
   char server_name[BUFFER_SIZE];
-  requestName(client_name);
+  requestInput(client_name, "Enter your username: ");
+  printf("Waiting for your opponent...\n");
   int server_socket = client_tcp_handshake(IP);
   printf("Connected!\n");
   n_send(server_socket, client_name);

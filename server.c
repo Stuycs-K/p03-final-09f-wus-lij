@@ -7,7 +7,8 @@ void subserver_logic(int client_socket){
 int main(int argc, char *argv[] ) {
   char server_name[BUFFER_SIZE];
   char client_name[BUFFER_SIZE];
-  requestName(server_name);
+  requestInput(server_name, "Enter your username: ");
+  printf("Waiting for your opponent...\n");
   int listen_socket = server_setup();
 
 
