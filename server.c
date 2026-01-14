@@ -26,21 +26,40 @@ int main(int argc, char *argv[] ) {
   char eInput[BUFFER_SIZE];
   char turn;
   turn = 0;
+
+    fd_set read_fds;
+    char buff[1025]="";
 while(1){
-  if(turn == 1){
-    requestInput(input, "Enter a message: ");
-    send(client_socket, input, strlen(input), 0);
-    turn= 1 - turn;
-  }
-  else{
-    int bytes = recv(client_socket, input, BUFFER_SIZE, 0);
-    if(bytes <= 0){
-      break;
+
+    FD_ZERO(&read_fds);
+    FD_SET(STDIN_FILENO, &read_fds);
+    FD_SET(client_socket,&read_fds);
+    int i = select(client_socket+1, &read_fds, NULL, NULL, NULL);
+
+    //if standard in, use fgets
+    if (FD_ISSET(STDIN_FILENO, &read_fds)) {
+        fgets(buff, sizeof(buff), stdin);
+        buff[strlen(buff)-1]=0;
+        if(turn == 1){
+          printf("You: ");
+          send(client_socket, buff, strlen(buff), 0);
+          turn= 1 - turn;
+        }
+        else{
+          printf("It's not your turn! It is %s's turn right now.\n", client_name);
+        }
     }
-    input[bytes] = '\0';
-    printf("%s: %s", client_name, input);
-    turn = 1 - turn;
-  }
+
+    // if socket
+    if (FD_ISSET(client_socket, &read_fds)) {
+        int bytes = recv(client_socket, buff, BUFFER_SIZE, 0);
+        if(bytes <= 0){
+          break;
+        }
+        buff[bytes] = '\0';
+        printf("%s: %s\n", client_name, buff);
+        turn = 1 - turn;
+    }
 }
 
 }
