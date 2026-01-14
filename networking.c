@@ -93,3 +93,39 @@ void game_logic(){ // guess a number
   char buff[BUFFER_SIZE];
   requestInput(buff, "Enter a number: ");
 }
+
+void turn_messaging(char * socket, char * socket_name, char * buff, fd_set read_fds, char * input, int turn){
+  while(1){
+
+      FD_ZERO(&read_fds);
+      FD_SET(STDIN_FILENO, &read_fds);
+      FD_SET(socket,&read_fds);
+      int i = select(socket+1, &read_fds, NULL, NULL, NULL);
+
+      //if standard in, use fgets
+      if (FD_ISSET(STDIN_FILENO, &read_fds)) {
+          fgets(buff, sizeof(buff), stdin);
+          buff[strlen(buff)-1]=0;
+          if(turn == 1){
+            send(socket, buff, strlen(buff), 0);
+            turn =1 - turn;
+          }
+          else{
+            printf("It's not your turn! It is %s's turn right now.\n", socket_name);
+          }
+
+      }
+      // if socket
+      if (FD_ISSET(socket, &read_fds)) {
+          int bytes = recv(socket, buff, BUFFER_SIZE, 0);
+          if(bytes <= 0){
+            break;
+          }
+          buff[bytes] = '\0';
+          printf("%s: %s\n", socket_name, buff);
+          turn = 1 - turn;
+          printf("You: ");
+          fflush(stdout);
+      }
+  }
+}

@@ -22,4 +22,5 @@ int client_tcp_handshake(char*server_address);
 int server_tcp_handshake(int listen_socket);
 void requestInput(char* buff, char * prompt);
 void requestName(char*buff);
+void turn_messaging(char * socket, char * socket_name, char * buff, fd_set read_fds, char * input, int turn);
 #endif
