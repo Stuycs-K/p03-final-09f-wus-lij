@@ -67,7 +67,13 @@ int client_tcp_handshake(char * server_address) {
   int serverd = socket(results->ai_family, results->ai_socktype, results->ai_protocol);//store the socket descriptor here
 
   //connect() to the server
-  connect(serverd, results->ai_addr, results->ai_addrlen);
+  if (connect(serverd, results->ai_addr, results->ai_addrlen) == -1){
+    free(hints);
+    freeaddrinfo(results);
+    perror("Could not connect. Terminated");
+    exit(1);
+  }
+
   free(hints);
   freeaddrinfo(results);
 
@@ -115,8 +121,18 @@ void turn_messaging(int socket, char * socket_name, char * buff, int turn){
       FD_SET(socket,&read_fds);
       int i = select(socket+1, &read_fds, NULL, NULL, NULL);
 
-      //if standard in, use fgets
-      if (FD_ISSET(STDIN_FILENO, &read_fds)) {
+      if (FD_ISSET(socket, &read_fds)) {      // if recieved message
+        int bytes = recv(socket, buff, BUFFER_SIZE, 0);
+        if(bytes <= 0){
+          break;
+        }
+        buff[bytes] = '\0';
+        turn = 1 - turn;
+        printf("%s guessed %s.\n", socket_name, buff);
+        printf("Your turn! Make a guess: ");
+        fflush(stdout);
+      }
+      else if (FD_ISSET(STDIN_FILENO, &read_fds)) { // if have STDIN_FILENO
           fgets(buff, sizeof(buff), stdin);
           buff[strlen(buff)-1]=0;
           if(turn == 1){
@@ -127,18 +143,6 @@ void turn_messaging(int socket, char * socket_name, char * buff, int turn){
             printf("It's not your turn! It is %s's turn right now.\n", socket_name);
           }
 
-      }
-      // if socket
-      if (FD_ISSET(socket, &read_fds)) {
-          int bytes = recv(socket, buff, BUFFER_SIZE, 0);
-          if(bytes <= 0){
-            break;
-          }
-          buff[bytes] = '\0';
-          printf("%s: %s\n", socket_name, buff);
-          turn = 1 - turn;
-          printf("You: ");
-          fflush(stdout);
       }
     }
 

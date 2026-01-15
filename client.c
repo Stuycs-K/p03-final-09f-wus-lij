@@ -34,8 +34,8 @@ int main(int argc, char *argv[] ) {
   fd_set read_fds;
   char buff[1025]="";
 
-  printf("kiminodebanyo! Type something...\nYou: ");
-  fflush(stdout);
+  // printf("kiminodebanyo! Type something...\nYou: ");
+  // fflush(stdout);
 
   turn_messaging(server_socket, server_name, buff, turn);
 
