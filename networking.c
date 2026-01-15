@@ -77,6 +77,7 @@ void requestInput(char * buff, char * prompt){
   printf("%s", prompt);
   fflush(stdout);
   fgets(buff, BUFFER_SIZE - 1, stdin);
+  return buff;
 }
 void requestName(char * buff){
   requestInput(buff, "Enter your name: ");
@@ -94,9 +95,28 @@ void game_logic(){ // guess a number
   requestInput(buff, "Enter a number: ");
 }
 
+char* cut_string(char* str){
+  size_t t = strcspn(str, "\n");
+  str[t] = '\0';
+}
+void n_send(int outside_socket, char* buff){
+  send(outside_socket, buff, strlen(buff), 0);
+}
+char* n_recieve(int outside_socket, char* buff){
+  int bytes = recv(outside_socket, buff, BUFFER_SIZE, 0);
+  if (bytes <= -1){
+    perror("RECV errno:");
+  } else if (bytes == 0){
+    printf("Connection closed.\n");
+  }
+  buff[bytes] = '\0';
+  return buff;
+}
+
 void turn_messaging(int socket, char * socket_name, char * buff, int turn){
   fd_set read_fds;
-  
+  int start = 0;
+
   while(1){
 
       FD_ZERO(&read_fds);
@@ -109,6 +129,10 @@ void turn_messaging(int socket, char * socket_name, char * buff, int turn){
           fgets(buff, sizeof(buff), stdin);
           buff[strlen(buff)-1]=0;
           if(turn == 1){
+            if(strcmp(buff, "turn") == 0 && start == 0){
+              printf("word detected. the game will now start\n");
+              start = 1;
+            }
             send(socket, buff, strlen(buff), 0);
             turn =1 - turn;
           }
