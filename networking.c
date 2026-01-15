@@ -86,11 +86,6 @@ void err(int i, char*message){
   }
 }
 
-void game_logic(){ // guess a number
-  char buff[BUFFER_SIZE];
-  requestInput(buff, "Enter a number: ");
-}
-
 char* cut_string(char* str){
   size_t t = strcspn(str, "\n");
   str[t] = '\0';
@@ -107,6 +102,7 @@ char* n_recieve(int outside_socket, char* buff){
   }
   buff[bytes] = '\0';
   return buff;
+}
 
 
 void turn_messaging(int socket, char * socket_name, char * buff, int turn){

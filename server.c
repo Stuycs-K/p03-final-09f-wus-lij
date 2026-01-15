@@ -30,7 +30,6 @@ int main(int argc, char *argv[] ) {
 
   turn_messaging(client_socket, client_name, buff, turn);
 
-    request_input(input, "Enter a message: ");
-    n_send(client_socket, input);
-  }
+  request_input(input, "Enter a message: ");
+  n_send(client_socket, input);
 }
