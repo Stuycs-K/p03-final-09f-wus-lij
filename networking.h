@@ -24,4 +24,5 @@ char* request_input(char* buff, char * prompt);
 char* cut_string(char* str);
 void n_send(int outside_socket, char* buff);
 char* n_recieve(int outside_socket, char* buff);
+void turn_messaging(int socket, char * socket_name, char * buff, int turn);
 #endif
