@@ -140,6 +140,6 @@ void turn_messaging(int socket, char * socket_name, char * buff, int turn){
           printf("You: ");
           fflush(stdout);
       }
-  }
+    }
 
 }
