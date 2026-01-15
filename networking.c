@@ -94,7 +94,9 @@ void game_logic(){ // guess a number
   requestInput(buff, "Enter a number: ");
 }
 
-void turn_messaging(char * socket, char * socket_name, char * buff, fd_set read_fds, char * input, int turn){
+void turn_messaging(int socket, char * socket_name, char * buff, int turn){
+  fd_set read_fds;
+  
   while(1){
 
       FD_ZERO(&read_fds);
