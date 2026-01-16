@@ -143,6 +143,21 @@ void turn_messaging(int socket, char * socket_name, char * buff, int turn, int i
           }
           if(turn == 1){
             send(socket, buff, strlen(buff), 0);
+            if(game_started){
+              int guess;
+              sscanf(buff, "%d", &guess);
+              printf("You: %s\n", buff);
+              if(guess == target_number){
+                printf("You won!\n");
+                game_started = 0;
+              }
+              else if(guess < target_number){
+                printf("Higher!\n");
+              }
+              else{
+                printf("Lower!\n");
+              }
+            }
             turn =1 - turn;
           }
           else{
@@ -168,6 +183,20 @@ void turn_messaging(int socket, char * socket_name, char * buff, int turn, int i
           }
           else{
             printf("%s: %s\n", socket_name, buff);
+            if(game_started){
+              int guess;
+              sscanf(buff, "%d", &guess);
+              if(guess == target_number){
+                printf("%s won!\n", socket_name);
+                game_started = 0;
+              }
+              else if(guess < target_number){
+                printf("Higher!\n");
+              }
+              else{
+                printf("Lower!\n");
+              }
+            }
             turn = 1 - turn;
             printf("You: ");
             fflush(stdout);
