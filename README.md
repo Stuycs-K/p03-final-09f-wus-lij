@@ -66,7 +66,8 @@ Both players should be connected to each other!
 3. Players take turns guessing numbers
 4. First player to guess correctly wins
 5. Server can type "start" again after a game ends to play another round
-
+### Bugs:
+Typing a space breaks the rest of the message
 ### Resources/References:
 
 - Networking lab
