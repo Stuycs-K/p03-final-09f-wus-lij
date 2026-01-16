@@ -32,6 +32,6 @@ int main(int argc, char *argv[] ) {
   printf("wait for your opponent to send something!\n");
   fflush(stdout);
 
-  turn_messaging(client_socket, client_name, buff, turn);
+  turn_messaging(client_socket, client_name, buff, turn, 1);
 
 }

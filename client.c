@@ -40,7 +40,7 @@ int main(int argc, char *argv[] ) {
   printf("kiminodebanyo! Type something...\nYou: ");
   fflush(stdout);
 
-  turn_messaging(server_socket, server_name, buff, turn);
+  turn_messaging(client_socket, client_name, buff, turn, 1);
 
   clientLogic(server_socket);
 }

@@ -113,7 +113,7 @@ char* n_recieve(int outside_socket, char* buff){
   return buff;
 }
 
-void turn_messaging(int socket, char * socket_name, char * buff, int turn){
+void turn_messaging(int socket, char * socket_name, char * buff, int turn, int is_server){
   fd_set read_fds;
   int start = 0;
 
@@ -129,7 +129,7 @@ void turn_messaging(int socket, char * socket_name, char * buff, int turn){
           fgets(buff, sizeof(buff), stdin);
           buff[strlen(buff)-1]=0;
           if(turn == 1){
-            if(strcmp(buff, "turn") == 0 && start == 0){
+            if(strcmp(buff, "turn") == 0 && start == 0 && is_sever == 1){
               printf("word detected. the game will now start\n");
               start = 1;
             }
