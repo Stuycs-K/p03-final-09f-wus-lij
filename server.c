@@ -12,10 +12,15 @@ int main(int argc, char *argv[] ) {
 
 
   int client_socket = server_tcp_handshake(listen_socket);
-  n_recieve(client_socket, client_name);
-  printf("Your opponent: %s", client_name);
-  n_send(client_socket, server_name);
-  cut_string(client_name);
+  int bytes = recv(client_socket, client_name, BUFFER_SIZE, 0);
+  if (bytes > 0){
+    client_name[bytes] = '\0';
+  }
+
+  printf("Your opponent's name is: %s", client_name);
+  send(client_socket, server_name, strlen(server_name), 0);
+  size_t t = strcspn(client_name, "\n");
+  client_name[t] = '\0';
 
   char input[BUFFER_SIZE];
   char incoming_msg[BUFFER_SIZE];
@@ -27,7 +32,7 @@ int main(int argc, char *argv[] ) {
   printf("wait for your opponent to send something!\n");
   fflush(stdout);
 
-  turn_messaging(client_socket, client_name, buff, turn);
+  turn_messaging(client_socket, client_name, buff, turn, 1);
 
     requestInput(input, "Enter a message: ");
     n_send(client_socket, input);
