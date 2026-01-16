@@ -115,7 +115,8 @@ char* n_recieve(int outside_socket, char* buff){
 
 void turn_messaging(int socket, char * socket_name, char * buff, int turn, int is_server){
   fd_set read_fds;
-  int start = 0;
+  int game_started = 0;
+  int target_number = 0;
 
   while(1){
 
@@ -128,11 +129,19 @@ void turn_messaging(int socket, char * socket_name, char * buff, int turn, int i
       if (FD_ISSET(STDIN_FILENO, &read_fds)) {
           fgets(buff, sizeof(buff), stdin);
           buff[strlen(buff)-1]=0;
+          
+          if(strcmp(buff, "start") == 0 && game_started == 0 && is_server){
+            game_started = 1;
+            srand(time(NULL));
+            target_number = rand() % 11;
+            printf("Game started! Opponent has to guess 0-10.\n");
+            char start_msg[20];
+            sprintf(start_msg, "START:%d", target_number);
+            send(socket, start_msg, strlen(start_msg), 0);
+            turn = 1 - turn;
+            continue;
+          }
           if(turn == 1){
-            if(strcmp(buff, "turn") == 0 && start == 0 && is_sever == 1){
-              printf("word detected. the game will now start\n");
-              start = 1;
-            }
             send(socket, buff, strlen(buff), 0);
             turn =1 - turn;
           }
@@ -148,10 +157,21 @@ void turn_messaging(int socket, char * socket_name, char * buff, int turn, int i
             break;
           }
           buff[bytes] = '\0';
-          printf("%s: %s\n", socket_name, buff);
-          turn = 1 - turn;
-          printf("You: ");
-          fflush(stdout);
+          
+          if(strncmp(buff, "START:", 6) == 0){
+            game_started = 1;
+            sscanf(buff + 6, "%d", &target_number);
+            printf("Game started by %s! Guess 0-10.\n", socket_name);
+            turn = 1 - turn;
+            printf("You: ");
+            fflush(stdout);
+          }
+          else{
+            printf("%s: %s\n", socket_name, buff);
+            turn = 1 - turn;
+            printf("You: ");
+            fflush(stdout);
+          }
       }
   }
 }
