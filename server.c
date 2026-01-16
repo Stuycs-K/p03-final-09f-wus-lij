@@ -17,7 +17,7 @@ int main(int argc, char *argv[] ) {
     client_name[bytes] = '\0';
   }
 
-  printf("Your opponent: %s", client_name);
+  printf("Your opponent's name is: %s", client_name);
   send(client_socket, server_name, strlen(server_name), 0);
   size_t t = strcspn(client_name, "\n");
   client_name[t] = '\0';

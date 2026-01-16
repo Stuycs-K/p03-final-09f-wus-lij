@@ -25,7 +25,7 @@ int main(int argc, char *argv[] ) {
   if (b > 0){
     server_name[b] = '\0';
   }
-  printf("Your opponent: %s", server_name);
+  printf("Your opponent's name is: %s", server_name);
   size_t t = strcspn(server_name, "\n");
   server_name[t] = '\0';
 
@@ -37,7 +37,7 @@ int main(int argc, char *argv[] ) {
   fd_set read_fds;
   char buff[1025]="";
 
-  printf("kiminodebanyo! Type something...\nYou: ");
+  printf("It's your turn! Type something...\nYou: ");
   fflush(stdout);
 
   turn_messaging(server_socket, server_name, buff, turn, 0);

@@ -143,7 +143,7 @@ void turn_messaging(int socket, char * socket_name, char * buff, int turn, int i
           }
           if(turn == 1){
             send(socket, buff, strlen(buff), 0);
-            if(game_started){
+            if(game_started && is_number(buff)){
               int guess;
               sscanf(buff, "%d", &guess);
               printf("You: %s\n", buff);
@@ -183,11 +183,16 @@ void turn_messaging(int socket, char * socket_name, char * buff, int turn, int i
           }
           else{
             printf("%s: %s\n", socket_name, buff);
-            if(game_started){
+            if(game_started && is_number(buff)){
               int guess;
               sscanf(buff, "%d", &guess);
               if(guess == target_number){
-                printf("%s won!\n", socket_name);
+                if(is_server){
+                  printf("%s won! say 'start' to play again.\n", socket_name);
+                }
+                else{
+                  printf("%s won! wait for 'start' to play again.\n", socket_name);
+                }
                 game_started = 0;
               }
               else if(guess < target_number){
@@ -203,4 +208,15 @@ void turn_messaging(int socket, char * socket_name, char * buff, int turn, int i
           }
       }
   }
+}
+
+int is_number(char* str){
+  int i = 0;
+  while(str[i] != '\0'){
+    if(str[i] < '0' || str[i] > '9'){
+      return 0;
+    }
+    i++;
+  }
+  return 1;
 }
