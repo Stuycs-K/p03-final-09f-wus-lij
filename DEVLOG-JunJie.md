@@ -26,4 +26,4 @@ Instead of trying to fix the turns bug, we decided to just let the user "send" m
 Making the code cleaner so it isn't a mess and just a huge chunk of code on both sides of server and client. Thinking right now how the game part will work as our basic workaround is done. Maybe we will check for a game start message, and we can have two games (guessing and/or rock paper scissors).
 
 ### 2026-01-15 - Game Implementation
-Added server only "start" command that generates random number (0-10) and sends to client. Added guess checking with sscanf() that displays Higher/Lower/Win feedback. Game resets after win. Added is_number() function to distinguish guesses from regular chat messages. 
+Added server only "start" command that generates random number (0-10) and sends to client. Added guess checking with sscanf() that displays Higher/Lower/Win feedback. Game resets after win. Added is_number() function to distinguish guesses from regular chat messages.
