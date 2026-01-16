@@ -1,5 +1,5 @@
 [![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/QfAIDTGi)
-# Insert Game Here
+# Number Guesser
 
 ### Brist
 
@@ -30,23 +30,30 @@ cd p03-final-09f-wus-lij
 
 
 
-Player 1 (Server): compile and run:
+Player 1 (Server): Compile and run:
+
+Optional: SSH onto marge
+```
+ssh 149.89.40.100
+```
+
 ```
 make server
 ```
-run the file:
+Run the file:
 ```
 ./server
 ```
 Enter your name when prompted.
 
-Player 2 (Client): compile and run:
+Player 2 (Client): compile:
 ```
 make client
 ```
-run the file:
+Run the file, with Player 1's IP Address as an argument.
+Running with no argument will default to marge.
 ```
-./client
+./client IPADRESSHERE
 ```
 Enter your name when prompted.
 
