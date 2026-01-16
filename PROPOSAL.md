@@ -7,12 +7,12 @@ Jun Jie Li
 
 # Intentions:
 
-Basic 2-player game. 1 player waits for a challenger and another player accepts, starting a game between the two.
+Basic number guessing game. 1 player waits for a challenger and another player accepts, starting a game between the two.
 
 
 # Intended usage:
 
-Basic matchmaking system for 2 players
+Play a lot of guessing games
 
 # Technical Details:
 
@@ -26,7 +26,8 @@ Instead of P2P, Clients (players) connect to a constant server and wait to be ma
 Allocating Memory, Sockets, Processes, Signals
 ### Breakdown
   - Set up basic sockets and handshake between 2 players
-  - send a game back & forth.
+  - Wait for a player to initiate
+  - Play the game and end the game
 
 <!-- (CHANGE THIS!!!!!) -->
 
