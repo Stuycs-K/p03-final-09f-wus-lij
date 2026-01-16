@@ -5,7 +5,8 @@
 
 Steven Wu  
 Jun Jie Li
-
+##
+[Demo Video](https://drive.google.com/file/d/1eRHBLgRjfc3UTTg5Ng0TTo66BBarZIbE/view?usp=drive_link)
 ### Project Description:
 
 Turn-based guessing game where 2 players connect over TCP and compete to guess a random number (0-10). The server player starts the game, and both players take turns guessing until someone wins. You can still send messages along the way, but that consumes your turn!
