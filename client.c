@@ -17,9 +17,9 @@ int main(int argc, char *argv[] ) {
   }
   char client_name[BUFFER_SIZE];
   char server_name[BUFFER_SIZE];
-  requestName(client_name);
   int server_socket = client_tcp_handshake(IP);
   printf("Connected!\n");
+  requestName(client_name);
   send(server_socket, client_name, strlen(client_name), 0);
   int b = recv(server_socket, server_name, BUFFER_SIZE, 0);
   if (b > 0){
