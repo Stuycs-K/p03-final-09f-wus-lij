@@ -8,12 +8,13 @@ Jun Jie Li
 
 ### Project Description:
 
-Basic game. 2 Players connect to eachother and play a game.
+Turn-based guessing game where 2 players connect over TCP and compete to guess a random number (0-10). The server player starts the game, and both players take turns guessing until someone wins. You can still send messages along the way, but that consumes your turn!
 
 ### Install/Compile/Run Instructions:
 
 Prerequisites:
 makefile
+
 
 Clone the Repo:  
 (SSH):  
@@ -28,7 +29,7 @@ cd p03-final-09f-wus-lij
 
 
 
-Player 1: compile the file:
+Player 1 (Server): compile and run:
 ```
 make server
 ```
@@ -36,9 +37,9 @@ run the file:
 ```
 ./server
 ```
-Wait for Player 1 to run the program
+Enter your name when prompted.
 
-Player 2: compile the file:
+Player 2 (Client): compile and run:
 ```
 make client
 ```
@@ -46,9 +47,19 @@ run the file:
 ```
 ./client
 ```
+Enter your name when prompted.
 
-Both players should be matched up!
+Both players should be connected to each other!
+
 ### Game Instructions:
-The player that initiated goes first. Each player types in an input, which ends their turns and gives it to the next person. Play continues until 1 player wins.
+
+1. Server player types "start" to begin the game
+2. A random number between 0-10 is generated
+3. Players take turns guessing numbers
+4. First player to guess correctly wins
+5. Server can type "start" again after a game ends to play another round
 
 ### Resources/References:
+
+- Networking lab
+- Server with Select demo from class notes
